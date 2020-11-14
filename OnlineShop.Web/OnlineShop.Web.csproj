@@ -46,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Kendo.Mvc">
-      <HintPath>..\..\Eagle\_Current\Eagle.Web\Eagle.Web\bin\Kendo.Mvc.dll</HintPath>
+      <HintPath>..\..\..\Desktop\Projects\Eagle\_Current\Eagle.Web\Eagle.Web\bin\Kendo.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Kendo.Mvc.Export">
-      <HintPath>..\..\Eagle\_Current\Eagle.Web\Eagle.Web\bin\Kendo.Mvc.Export.dll</HintPath>
+      <HintPath>..\..\..\Desktop\Projects\Eagle\_Current\Eagle.Web\Eagle.Web\bin\Kendo.Mvc.Export.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
@@ -1343,6 +1343,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\mainlog0.jpg" />
+    <Content Include="Content\mainlogo.png" />
+    <Content Include="Content\mainlogo2.png" />
+    <Content Include="Content\mainlogo3.png" />
     <Content Include="favicon.ico" />
     <Content Include="Files\ArticleImages\Image\67b82616-1101-4cb9-96ec-ac40a019795b.png" />
     <Content Include="Files\ArticleImages\Image\c2e50ba8-473a-4a90-9f1b-a72827a89bcd.jpg" />
@@ -1487,6 +1491,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

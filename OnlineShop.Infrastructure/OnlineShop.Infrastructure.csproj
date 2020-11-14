@@ -69,6 +69,14 @@
     <Compile Include="Migrations\202011100818565_Initial.Designer.cs">
       <DependentUpon>202011100818565_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011141352509_Added-Shop-Related-Tables.cs" />
+    <Compile Include="Migrations\202011141352509_Added-Shop-Related-Tables.Designer.cs">
+      <DependentUpon>202011141352509_Added-Shop-Related-Tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011141411490_Added-Shop-Related-Tables2.cs" />
+    <Compile Include="Migrations\202011141411490_Added-Shop-Related-Tables2.Designer.cs">
+      <DependentUpon>202011141411490_Added-Shop-Related-Tables2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,6 +107,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202011100818565_Initial.resx">
       <DependentUpon>202011100818565_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011141352509_Added-Shop-Related-Tables.resx">
+      <DependentUpon>202011141352509_Added-Shop-Related-Tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011141411490_Added-Shop-Related-Tables2.resx">
+      <DependentUpon>202011141411490_Added-Shop-Related-Tables2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

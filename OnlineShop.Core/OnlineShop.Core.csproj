@@ -52,8 +52,8 @@
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
@@ -81,21 +81,39 @@
     <Compile Include="Models\ArticleComment.cs" />
     <Compile Include="Models\ArticleHeadLine.cs" />
     <Compile Include="Models\ArticleTag.cs" />
+    <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\ContactForm.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Discount.cs" />
     <Compile Include="Models\Faq.cs" />
+    <Compile Include="Models\Feature.cs" />
+    <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\InvoiceItem.cs" />
     <Compile Include="Models\Log.cs" />
+    <Compile Include="Models\Offer.cs" />
     <Compile Include="Models\Permission.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductComment.cs" />
+    <Compile Include="Models\ProductFeatureValue.cs" />
+    <Compile Include="Models\ProductGallery.cs" />
+    <Compile Include="Models\ProductGroup.cs" />
+    <Compile Include="Models\ProductGroupBrand.cs" />
+    <Compile Include="Models\ProductGroupFeature.cs" />
+    <Compile Include="Models\ProductMainFeature.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\RolePermission.cs" />
     <Compile Include="Models\StaticContentDetail.cs" />
     <Compile Include="Models\StaticContentType.cs" />
+    <Compile Include="Models\SubFeature.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\DiscountType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
