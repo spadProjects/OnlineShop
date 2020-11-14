@@ -58,7 +58,7 @@ namespace OnlineShop.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-        var test ="this is a test";
+        var test ="this is a  merge test";
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
