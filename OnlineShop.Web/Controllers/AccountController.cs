@@ -58,6 +58,7 @@ namespace OnlineShop.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+        var test ="this is a test";
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
