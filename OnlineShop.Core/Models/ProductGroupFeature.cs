@@ -8,7 +8,7 @@ namespace OnlineShop.Core.Models
 {
     public class ProductGroupFeature : IBaseEntity
     {
-        public string ProductGroupId { get; set; }
+        public int ProductGroupId { get; set; }
         public ProductGroup ProductGroup { get; set; }
         public int FeatureId { get; set; }
         public Feature Feature { get; set; }

@@ -62,6 +62,7 @@
     <Compile Include="Helpers\CheckImageClass.cs" />
     <Compile Include="Helpers\CheckPermission.cs" />
     <Compile Include="Helpers\Email.cs" />
+    <Compile Include="Helpers\HierarchyLoop.cs" />
     <Compile Include="Helpers\ImageResizer.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
     <Compile Include="Helpers\PersianCulture.cs" />
@@ -77,6 +78,18 @@
     <Compile Include="Migrations\202011141411490_Added-Shop-Related-Tables2.Designer.cs">
       <DependentUpon>202011141411490_Added-Shop-Related-Tables2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011211210496_Updated-sub-features.cs" />
+    <Compile Include="Migrations\202011211210496_Updated-sub-features.Designer.cs">
+      <DependentUpon>202011211210496_Updated-sub-features.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011211305489_Updated-pgroups.cs" />
+    <Compile Include="Migrations\202011211305489_Updated-pgroups.Designer.cs">
+      <DependentUpon>202011211305489_Updated-pgroups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011231327541_updated-pgbrands.cs" />
+    <Compile Include="Migrations\202011231327541_updated-pgbrands.Designer.cs">
+      <DependentUpon>202011231327541_updated-pgbrands.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,12 +98,16 @@
     <Compile Include="Repositories\ArticleHeadLinesRepository.cs" />
     <Compile Include="Repositories\ArticlesRepositoriy.cs" />
     <Compile Include="Repositories\AuthRepsitory.cs" />
+    <Compile Include="Repositories\BrandsRepository.cs" />
     <Compile Include="Repositories\ContactFormsRepository.cs" />
     <Compile Include="Repositories\FaqRepository.cs" />
+    <Compile Include="Repositories\FeaturesRepository.cs" />
     <Compile Include="Repositories\LogsRepository.cs" />
+    <Compile Include="Repositories\ProductGroupsRepository.cs" />
     <Compile Include="Repositories\StaticContentDetailsRepository.cs" />
     <Compile Include="Repositories\StaticContentsRepository.cs" />
     <Compile Include="Repositories\StaticContentTypes.cs" />
+    <Compile Include="Repositories\SubFeaturesRepository.cs" />
     <Compile Include="Repositories\UsersRepository.cs" />
     <Compile Include="Seed.cs" />
   </ItemGroup>
@@ -113,6 +130,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011141411490_Added-Shop-Related-Tables2.resx">
       <DependentUpon>202011141411490_Added-Shop-Related-Tables2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011211210496_Updated-sub-features.resx">
+      <DependentUpon>202011211210496_Updated-sub-features.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011211305489_Updated-pgroups.resx">
+      <DependentUpon>202011211305489_Updated-pgroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011231327541_updated-pgbrands.resx">
+      <DependentUpon>202011231327541_updated-pgbrands.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

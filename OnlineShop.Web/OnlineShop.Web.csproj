@@ -194,14 +194,18 @@
     <Compile Include="Areas\Admin\Controllers\ArticleCommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ArticleHeadLinesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ArticlesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BrandsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactFormController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\FaqController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FeaturesController.cs" />
     <Compile Include="Areas\Admin\Controllers\GridController.cs" />
     <Compile Include="Areas\Admin\Controllers\PermissionsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\StaticContentDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\StaticContentTypesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SubFeaturesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -219,6 +223,7 @@
     <Compile Include="ViewModels\ArticleViewModels.cs" />
     <Compile Include="ViewModels\IdentityModels.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
+    <Compile Include="ViewModels\ProductGroupsViewModel.cs" />
     <Compile Include="ViewModels\UserViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1441,6 +1446,22 @@
     <Content Include="ckeditor\_samples\adobeair\run.bat" />
     <Content Include="ckeditor\_samples\adobeair\run.sh" />
     <Content Include="ckeditor\_samples\assets\output_for_flash.fla" />
+    <Content Include="Areas\Admin\Views\Brands\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Brands\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Brands\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Brands\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Features\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Features\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Features\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Features\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SubFeatures\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SubFeatures\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SubFeatures\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SubFeatures\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroups\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroups\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroups\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGroups\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1496,6 +1517,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Files\BrandsImages\Temp\" />
+    <Folder Include="Files\ProductGroupImages\Image\" />
+    <Folder Include="Files\ProductGroupImages\Temp\" />
+    <Folder Include="Files\ProductGroupImages\Thumb\" />
     <Folder Include="Files\Services\File\" />
     <Folder Include="Files\Services\Image\" />
     <Folder Include="Files\Services\Thumb\" />

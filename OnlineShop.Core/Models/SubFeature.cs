@@ -17,6 +17,8 @@ namespace OnlineShop.Core.Models
         [Display(Name = "اطلاعات دیگر")]
         [MaxLength(600, ErrorMessage = "{0} باید کمتر از 600 کارکتر باشد")]
         public string OtherInfo { get; set; }
+        public int? FeatureId { get; set; }
+        public Feature Feature { get; set; }
         public ICollection<ProductMainFeature> ProductMainFeatures { get; set; }
         public ICollection<ProductFeatureValue> ProductFeatureValues { get; set; }
         public string InsertUser { get; set; }

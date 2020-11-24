@@ -14,6 +14,7 @@ namespace OnlineShop.Core.Models
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(600, ErrorMessage = "{0} باید کمتر از 600 کارکتر باشد")]
         public string Title { get; set; }
+        public string Image { get; set; }
         public ICollection<Product> Products { get; set; }
         public int? ParentId { get; set; }
         public virtual ProductGroup Parent { get; set; }

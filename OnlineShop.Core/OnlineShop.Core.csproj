@@ -108,7 +108,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utility\DiscountType.cs" />
+    <Compile Include="Utility\enums.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -10,6 +10,7 @@ namespace OnlineShop.Core.Models
     public class Brand : IBaseEntity
     {
         public int Id { get; set; }
+        [Display(Name = "لوگو")]
         public string Logo { get; set; }
         [Display(Name = "نام برند")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
