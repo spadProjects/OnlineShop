@@ -89,19 +89,21 @@ namespace OnlineShop.Web.Areas.Admin.Controllers
         public int? Edit(NewProductViewModel product)
         {
             if (!ModelState.IsValid) return null;
-            var prod = _repo.GetProduct(product.ProductId.Value);
+            var prod = _repo.Get(product.ProductId.Value);
             prod.Title = product.Title;
             prod.ShortDescription = product.ShortDescription;
             prod.Description = HttpUtility.UrlDecode(product.Description, System.Text.Encoding.Default);
             prod.BrandId = product.Brand;
             prod.ProductGroupId = product.ProductGroup;
             prod.Rate = product.Rate;
-            prod.ShortDescription = product.ShortDescription;
             var updateProduct = _repo.Update(prod);
             #region Removing Previous Product Features
-            foreach (var mainFeature in prod.ProductMainFeatures)
+            var productMainFeatures = _repo.GetProductMainFeatures(updateProduct.Id);
+            foreach (var mainFeature in productMainFeatures)
                 _mainFeatureRepo.Delete(mainFeature.Id);
-            foreach (var feature in prod.ProductFeatureValues)
+
+            var productFeatures = _repo.GetProductFeatures(updateProduct.Id);
+            foreach (var feature in productFeatures)
                 _featureRepo.Delete(feature.Id);
             #endregion
 
