@@ -31,6 +31,8 @@ namespace OnlineShop.Core.Models
         public int Rate { get; set; }
         public int? ProductGroupId { get; set; }
         public ProductGroup ProductGroup { get; set; }
+        public int? BrandId { get; set; }
+        public Brand Brand { get; set; }
         public ICollection<ProductGallery> ProductGalleries { get; set; }
         public ICollection<ProductMainFeature> ProductMainFeatures { get; set; }
         public ICollection<ProductComment> ProductComments { get; set; }

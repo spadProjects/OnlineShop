@@ -90,6 +90,22 @@
     <Compile Include="Migrations\202011231327541_updated-pgbrands.Designer.cs">
       <DependentUpon>202011231327541_updated-pgbrands.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011290851422_Added-Product-Brand-Relation.cs" />
+    <Compile Include="Migrations\202011290851422_Added-Product-Brand-Relation.Designer.cs">
+      <DependentUpon>202011290851422_Added-Product-Brand-Relation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011290858057_Updated-ProductFeatureValue-And-ProductMainFeature.cs" />
+    <Compile Include="Migrations\202011290858057_Updated-ProductFeatureValue-And-ProductMainFeature.Designer.cs">
+      <DependentUpon>202011290858057_Updated-ProductFeatureValue-And-ProductMainFeature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011290901446_Updated-ProductMainFeature.cs" />
+    <Compile Include="Migrations\202011290901446_Updated-ProductMainFeature.Designer.cs">
+      <DependentUpon>202011290901446_Updated-ProductMainFeature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011291024430_Updated-PMF-and-PFV.cs" />
+    <Compile Include="Migrations\202011291024430_Updated-PMF-and-PFV.Designer.cs">
+      <DependentUpon>202011291024430_Updated-PMF-and-PFV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,7 +119,10 @@
     <Compile Include="Repositories\FaqRepository.cs" />
     <Compile Include="Repositories\FeaturesRepository.cs" />
     <Compile Include="Repositories\LogsRepository.cs" />
+    <Compile Include="Repositories\ProductFeatureValuesRepository.cs" />
     <Compile Include="Repositories\ProductGroupsRepository.cs" />
+    <Compile Include="Repositories\ProductMainFeaturesRepository.cs" />
+    <Compile Include="Repositories\ProductsRepository.cs" />
     <Compile Include="Repositories\StaticContentDetailsRepository.cs" />
     <Compile Include="Repositories\StaticContentsRepository.cs" />
     <Compile Include="Repositories\StaticContentTypes.cs" />
@@ -139,6 +158,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011231327541_updated-pgbrands.resx">
       <DependentUpon>202011231327541_updated-pgbrands.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011290851422_Added-Product-Brand-Relation.resx">
+      <DependentUpon>202011290851422_Added-Product-Brand-Relation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011290858057_Updated-ProductFeatureValue-And-ProductMainFeature.resx">
+      <DependentUpon>202011290858057_Updated-ProductFeatureValue-And-ProductMainFeature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011290901446_Updated-ProductMainFeature.resx">
+      <DependentUpon>202011290901446_Updated-ProductMainFeature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011291024430_Updated-PMF-and-PFV.resx">
+      <DependentUpon>202011291024430_Updated-PMF-and-PFV.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

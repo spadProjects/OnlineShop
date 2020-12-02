@@ -120,10 +120,10 @@ namespace OnlineShop.Web.Areas.Admin.Controllers
                 System.IO.File.Delete(Server.MapPath("/Files/ProductGroupImages/Temp/" + newFileName));
                 productGroup.Image = newFileName;
                 _repo.Update(productGroup);
+                return true;
             }
             #endregion
-
-            return true;
+            return false;
         }
         // POST: Admin/ProductGroups/Delete/5
         [HttpPost, ActionName("Delete")]

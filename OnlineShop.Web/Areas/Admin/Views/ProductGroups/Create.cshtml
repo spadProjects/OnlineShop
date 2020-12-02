@@ -89,28 +89,20 @@
                         </div>
                         <div class="form-group">
                             <label>ویژگی های گروه</label>
+                            <select id="ProductGroupFeatures" name="ProductGroupFeatures" class="dual-listbox" multiple
+                                    data-available-title="ویژگی های موجود"
+                                    data-selected-title="ویژگی های انتخاب شده"
+                                    data-add="<i class='flaticon2-back'></i>"
+                                    data-remove="<i class='flaticon2-next'></i>"
+                                    data-add-all="<i class='flaticon2-fast-back'></i>"
+                                    data-remove-all="<i class='flaticon2-fast-next'></i>">
+                                @foreach (var feature in Features)
+                                {
+                                    <option value="@feature.Id">@feature.Title</option>
+                                }
+                            </select>
                             <div class="checkbox-list col-lg-12">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        @for (int i = 0; i < (int)Math.Floor((decimal)Features.Count / 2 + 1); i++)
-                                        {
-                                            <label style="margin-bottom: 20px" class="checkbox checkbox-lg">
-                                                <input type="checkbox" value="@Features[i].Id" name="ProductGroupFeatures" />
-                                                <span></span>
-                                                @Features[i].Title
-                                            </label>
-                                        }
-                                    </div>
-                                    <div class="col-md-6">
-                                        @for (int i = (int)Math.Floor((decimal)Features.Count / 2 + 1); i < Features.Count; i++)
-                                        {
-                                            <label style="margin-bottom: 20px" class="checkbox checkbox-lg">
-                                                <input type="checkbox" value="@Features[i].Id" name="ProductGroupFeatures" />
-                                                <span></span>
-                                                @Features[i].Title
-                                            </label>
-                                        }
-                                    </div>
                                     <span class="text-danger" style="display: none" id="validate_feature">لطفا حداقل یک ویژگی را انتخاب کنید</span>
                                 </div>
                             </div>
@@ -138,6 +130,7 @@
     <script src="/ckeditor/ckeditor.js"></script>
     <script src="/ckeditor/adapters/jquery.js"></script>
     <script>
+
         $('#Brands').select2({
             placeholder: "برند های این دسته را انتخاب کنید",
         });
@@ -157,18 +150,41 @@
         new KTImageInput('productGroup-image');
     </script>
     <script>
+        var listBox = $("#ProductGroupFeatures");
+        // get titles
+        var availableTitle = (listBox.attr("data-available-title") != null) ? listBox.attr("data-available-title") : "ویژگی های موجود";
+        var selectedTitle = (listBox.attr("data-selected-title") != null) ? listBox.attr("data-selected-title") : "ویژگی های انتخاب شده";
+
+        // get button labels
+        var addLabel = (listBox.attr("data-add") != null) ? listBox.attr("data-add") : "افزودن";
+        var removeLabel = (listBox.attr("data-remove") != null) ? listBox.attr("data-remove") : "حذف";
+        var addAllLabel = (listBox.attr("data-add-all") != null) ? listBox.attr("data-add-all") : "افزودن همه";
+        var removeAllLabel = (listBox.attr("data-remove-all") != null) ? listBox.attr("data-remove-all") : "حذف همه";
+        var box = new DualListbox(listBox.get(0), {
+            availableTitle: availableTitle,
+            selectedTitle: selectedTitle,
+            addButtonText: addLabel,
+            removeButtonText: removeLabel,
+            addAllButtonText: addAllLabel,
+            removeAllButtonText: removeAllLabel,
+        });
+    </script>
+    <script>
         $("#form").submit(function (e) {
             e.preventDefault();
             if ($("#form").valid()) {
                 var Title = $("#Title").val();
                 var BrandIds = [];
                 $('#Brands').select2('data').map(function (i) { BrandIds.push(parseInt(i.id)) });
+                var ParentGroupId = 0;
                 var selectedGroup = $("#ParentGroupId").jstree().get_selected()[0]; // ["pg_id"]
-                var selectedGroupArr = selectedGroup.split('_'); // ["pg","id"]
-                var ParentGroupId = parseInt(selectedGroupArr[1]); // id
+                if (selectedGroup != null || selectedGroup != undefined) {
+                    var selectedGroupArr = selectedGroup.split('_'); // ["pg","id"]
+                    var ParentGroupId = parseInt(selectedGroupArr[1]); // id
+                }
                 var ProductGroupFeatureIds = [];
-                $("input[name='ProductGroupFeatures']:checked").each(function () {
-                    ProductGroupFeatureIds.push(parseInt($(this).val()));
+                box.selected.map(function (item) {
+                    ProductGroupFeatureIds.push(parseInt($(item).data("id")));
                 });
                 $("#validate_brand").hide();
                 $("#validate_brand").hide();

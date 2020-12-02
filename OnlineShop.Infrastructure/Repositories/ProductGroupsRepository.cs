@@ -30,17 +30,33 @@ namespace OnlineShop.Infrastructure.Repositories
         {
             return _context.Features.Where(f => f.IsDeleted == false).ToList();
         }
+        public List<Feature> GetProductGroupFeatures(int id)
+        {
+            var pgFeatures = _context.ProductGroupFeatures.Where(f => f.IsDeleted == false && f.ProductGroupId == id)
+                .ToList();
+            return pgFeatures.Select(item => _context.Features.Find(item.FeatureId)).ToList();
+        }
+        public List<Brand> GetProductGroupBrands(int id)
+        {
+            var pgBrands = _context.ProductGroupBrands.Where(f => f.IsDeleted == false && f.ProductGroupId == id)
+                .ToList();
+            return pgBrands.Select(item => _context.Brands.Find(item.BrandId)).ToList();
+        }
         public List<Brand> GetBrands()
         {
             return _context.Brands.Where(f => f.IsDeleted == false).ToList();
         }
         public List<ProductGroup> GetProductGroups()
         {
-            return _context.ProductGroups.Where(f => f.IsDeleted == false).Include(p => p.Children).ToList();
+            return _context.ProductGroups.Where(f => f.IsDeleted == false).Include(p => p.Children).OrderByDescending(p=>p.InsertDate).ToList();
         }
         public ProductGroup AddNewProductGroup(int parentId, string title, List<int> brandIds, List<int> featureIds)
         {
             var productGroup = new ProductGroup();
+
+            var user = GetCurrentUser();
+            productGroup.InsertDate = DateTime.Now;
+            productGroup.InsertUser = user.UserName;
 
             #region Adding Product Group
             productGroup.Title = title;
@@ -48,7 +64,7 @@ namespace OnlineShop.Infrastructure.Repositories
                 productGroup.ParentId = parentId;
             _context.ProductGroups.Add(productGroup);
             _context.SaveChanges();
-
+            _logger.LogEvent(productGroup.GetType().Name, productGroup.Id, "Add");
             #endregion
 
             #region Adding Product Group Brands
@@ -79,6 +95,9 @@ namespace OnlineShop.Infrastructure.Repositories
         public ProductGroup UpdateProductGroup(int parentId,int productGroupId, string title, List<int> brandIds, List<int> featureIds)
         {
             var productGroup = Get(productGroupId);
+            var user = GetCurrentUser();
+            productGroup.UpdateDate = DateTime.Now;
+            productGroup.UpdateUser = user.UserName;
 
             #region Adding Product Group
             productGroup.Title = title;
@@ -87,9 +106,7 @@ namespace OnlineShop.Infrastructure.Repositories
             else
                 productGroup.ParentId = null;
             Update(productGroup);
-            //_context.Entry(productGroup).State = EntityState.Modified;
-            //_context.SaveChanges();
-
+            _logger.LogEvent(productGroup.GetType().Name, productGroup.Id, "Update");
             #endregion
 
             #region Product Group Brands

@@ -21,4 +21,20 @@ namespace OnlineShop.Web.ViewModels
         public int ParentGroupId { get; set; }
         public List<int> ProductGroupFeatureIds { get; set; }
     }
+
+    public class FeaturesObjViewModel
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+    }
+    public class BrandsObjViewModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+    public class SubFeaturesObjViewModel
+    {
+        public int Id { get; set; }
+        public string Value { get; set; }
+    }
 }

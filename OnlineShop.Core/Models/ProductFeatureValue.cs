@@ -10,10 +10,9 @@ namespace OnlineShop.Core.Models
     public class ProductFeatureValue : IBaseEntity
     {
         public int Id { get; set; }
-        [Display(Name = "عنوان")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [Display(Name = "ویژگی")]
         [MaxLength(600, ErrorMessage = "{0} باید کمتر از 600 کارکتر باشد")]
-        public string Title { get; set; }
+        public string Value { get; set; }
         [Display(Name = "اطلاعات دیگر")]
         [MaxLength(600, ErrorMessage = "{0} باید کمتر از 600 کارکتر باشد")]
         public string OtherInfo { get; set; }

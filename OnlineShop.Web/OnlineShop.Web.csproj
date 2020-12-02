@@ -202,6 +202,7 @@
     <Compile Include="Areas\Admin\Controllers\GridController.cs" />
     <Compile Include="Areas\Admin\Controllers\PermissionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductGroupsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\StaticContentDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\StaticContentTypesController.cs" />
@@ -224,6 +225,7 @@
     <Compile Include="ViewModels\IdentityModels.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="ViewModels\ProductGroupsViewModel.cs" />
+    <Compile Include="ViewModels\ProductViewModels.cs" />
     <Compile Include="ViewModels\UserViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1462,6 +1464,9 @@
     <Content Include="Areas\Admin\Views\ProductGroups\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\ProductGroups\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ProductGroups\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1521,6 +1526,9 @@
     <Folder Include="Files\ProductGroupImages\Image\" />
     <Folder Include="Files\ProductGroupImages\Temp\" />
     <Folder Include="Files\ProductGroupImages\Thumb\" />
+    <Folder Include="Files\ProductImages\Image\" />
+    <Folder Include="Files\ProductImages\Temp\" />
+    <Folder Include="Files\ProductImages\Thumb\" />
     <Folder Include="Files\Services\File\" />
     <Folder Include="Files\Services\Image\" />
     <Folder Include="Files\Services\Thumb\" />

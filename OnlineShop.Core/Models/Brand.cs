@@ -16,6 +16,7 @@ namespace OnlineShop.Core.Models
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Name { get; set; }
         public ICollection<ProductGroupBrand> ProductGroupBrands { get; set; }
+        public ICollection<Product> Products { get; set; }
         public ICollection<Discount> Discounts { get; set; }
         public string InsertUser { get; set; }
         public DateTime? InsertDate { get; set; }
