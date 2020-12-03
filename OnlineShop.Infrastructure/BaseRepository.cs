@@ -54,6 +54,10 @@ namespace OnlineShop.Infrastructure
             {
                 return entity;
             }
+            var user = GetCurrentUser();
+            entity.UpdateDate = DateTime.Now;
+            entity.UpdateUser = user.UserName;
+
             entity.IsDeleted = true;
             context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();

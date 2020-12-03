@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Kendo.Mvc;
@@ -217,6 +218,36 @@ namespace OnlineShop.Web.Areas.Admin.Controllers
             var subFeatures = _repo.GetSubFeaturesByFeatureId(id);
             var obj = subFeatures.Select(item => new SubFeaturesObjViewModel() {Id = item.Id, Value = item.Value}).ToList();
             return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var product = _repo.Get(id.Value);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(product);
+        }
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var product = _repo.Get(id);
+            #region Deleting Product Features
+            var productMainFeatures = _repo.GetProductMainFeatures(product.Id);
+            foreach (var mainFeature in productMainFeatures)
+                _mainFeatureRepo.Delete(mainFeature.Id);
+
+            var productFeatures = _repo.GetProductFeatures(product.Id);
+            foreach (var feature in productFeatures)
+                _featureRepo.Delete(feature.Id);
+            #endregion
+            _repo.Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }
