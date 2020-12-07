@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRepository.cs" />
+    <Compile Include="Extensions\DistinctBy.cs" />
     <Compile Include="Filters\PaginationFilter.cs" />
     <Compile Include="Helpers\AsyncHelper.cs" />
     <Compile Include="Helpers\CheckImageClass.cs" />
@@ -106,6 +107,14 @@
     <Compile Include="Migrations\202011291024430_Updated-PMF-and-PFV.Designer.cs">
       <DependentUpon>202011291024430_Updated-PMF-and-PFV.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012070856346_updated-discount.cs" />
+    <Compile Include="Migrations\202012070856346_updated-discount.Designer.cs">
+      <DependentUpon>202012070856346_updated-discount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012071255007_updated-discounts.cs" />
+    <Compile Include="Migrations\202012071255007_updated-discounts.Designer.cs">
+      <DependentUpon>202012071255007_updated-discounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,9 +125,11 @@
     <Compile Include="Repositories\AuthRepsitory.cs" />
     <Compile Include="Repositories\BrandsRepository.cs" />
     <Compile Include="Repositories\ContactFormsRepository.cs" />
+    <Compile Include="Repositories\DiscountsRepository.cs" />
     <Compile Include="Repositories\FaqRepository.cs" />
     <Compile Include="Repositories\FeaturesRepository.cs" />
     <Compile Include="Repositories\LogsRepository.cs" />
+    <Compile Include="Repositories\OffersRepository.cs" />
     <Compile Include="Repositories\ProductFeatureValuesRepository.cs" />
     <Compile Include="Repositories\ProductGroupsRepository.cs" />
     <Compile Include="Repositories\ProductMainFeaturesRepository.cs" />
@@ -171,6 +182,13 @@
     <EmbeddedResource Include="Migrations\202011291024430_Updated-PMF-and-PFV.resx">
       <DependentUpon>202011291024430_Updated-PMF-and-PFV.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012070856346_updated-discount.resx">
+      <DependentUpon>202012070856346_updated-discount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012071255007_updated-discounts.resx">
+      <DependentUpon>202012071255007_updated-discounts.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
