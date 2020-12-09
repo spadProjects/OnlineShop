@@ -1,16 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using OnlineShop.Core.Models;
 
 namespace OnlineShop.Web.ViewModels
 {
-    public class CreateDiscountViewModel
+    public class DiscountFormViewModel
     {
-        public List<Offer> Offers { get; set; }
-        public List<Brand> Brands { get; set; }
-        public List<ProductGroup> ProductGroups { get; set; }
-        public List<Product> Products { get; set; }
+        [DisplayName("عنوان تخفیف")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(500, ErrorMessage = "{0} باید کمتر از 500 کارکتر باشد")]
+        public string Title { get; set; }
+        public int DiscountType { get; set; }
+        [DisplayName("میزان تخفیف")]
+        [Required(ErrorMessage = "لطفا میزان تخفیف را وارد کنید")]
+        public long Amount { get; set; }
+        public List<int> BrandIds { get; set; }
+        public List<int> ProductIds { get; set; }
+        public List<int> ProductGroupIds { get; set; }
+        public bool IsOffer { get; set; }
+        public int? OfferId { get; set; }
+
+        // Edit Props
+        public string GroupIdentifier { get; set; }
+        public List<Discount> PreviousDiscounts { get; set; }
     }
 }

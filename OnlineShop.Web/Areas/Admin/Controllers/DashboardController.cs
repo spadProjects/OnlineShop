@@ -3,6 +3,7 @@ using OnlineShop.Infrastructure.Helpers;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,7 +11,7 @@ using OnlineShop.Web.ViewModels;
 
 namespace OnlineShop.Web.Areas.Admin.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class DashboardController : Controller
     {
         private MyDbContext db = new MyDbContext();

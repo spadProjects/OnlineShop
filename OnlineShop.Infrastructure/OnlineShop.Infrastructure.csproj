@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -131,6 +132,7 @@
     <Compile Include="Repositories\LogsRepository.cs" />
     <Compile Include="Repositories\OffersRepository.cs" />
     <Compile Include="Repositories\ProductFeatureValuesRepository.cs" />
+    <Compile Include="Repositories\ProductGalleriesRepository.cs" />
     <Compile Include="Repositories\ProductGroupsRepository.cs" />
     <Compile Include="Repositories\ProductMainFeaturesRepository.cs" />
     <Compile Include="Repositories\ProductsRepository.cs" />

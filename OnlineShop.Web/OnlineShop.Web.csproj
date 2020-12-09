@@ -203,6 +203,7 @@
     <Compile Include="Areas\Admin\Controllers\GridController.cs" />
     <Compile Include="Areas\Admin\Controllers\OffersController.cs" />
     <Compile Include="Areas\Admin\Controllers\PermissionsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductGalleriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
@@ -1477,6 +1478,12 @@
     <Content Include="Areas\Admin\Views\Offers\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Discounts\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Discounts\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Discounts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Discounts\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGalleries\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGalleries\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGalleries\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGalleries\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1538,6 +1545,7 @@
     <Folder Include="Files\ProductGroupImages\Temp\" />
     <Folder Include="Files\ProductGroupImages\Thumb\" />
     <Folder Include="Files\ProductImages\Image\" />
+    <Folder Include="Files\ProductImages\ProductGallery\" />
     <Folder Include="Files\ProductImages\Temp\" />
     <Folder Include="Files\ProductImages\Thumb\" />
     <Folder Include="Files\Services\File\" />

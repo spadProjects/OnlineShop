@@ -41,7 +41,15 @@
     columns.Bound(model => model.Name);
     columns.Bound(item => @item.Logo).Filterable(false).Groupable(false)
                 .Template(@<text>
+                              @if (item.Logo != null)
+                      {
                               <img src="~/Files/BrandsImages/@item.Logo" style="height: 50px" alt="@item.Name"/>
+
+                      }
+                      else
+                      {
+                          <span>-</span>
+                      }
                            </text>);
 
     columns.Bound(item => @item.Id).IncludeInMenu(false).Sortable(false).Title("دستورات").Filterable(false).Groupable(false).Template(
