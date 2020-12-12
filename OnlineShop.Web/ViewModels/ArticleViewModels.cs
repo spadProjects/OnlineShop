@@ -48,6 +48,7 @@ namespace OnlineShop.Web.ViewModels
             this.Author = article.User != null? $"{article.User.FirstName} {article.User.LastName}" : "-";
             this.ArticleCategory = article.ArticleCategory != null? article.ArticleCategory.Title : "-";
             this.PersianAddedDate = article.AddedDate != null? new PersianDateTime(article.AddedDate.Value).ToString() : "-";
+            this.AddedDate = article.AddedDate;
         }
         public int Id { get; set; }
         [Display(Name = "عنوان")]
@@ -58,6 +59,7 @@ namespace OnlineShop.Web.ViewModels
         public string ArticleCategory { get; set; }
         [Display(Name = "تاریخ ثبت")]
         public string PersianAddedDate { get; set; }
+        public DateTime? AddedDate { get; set; }
     }
     public class CommentWithPersianDateViewModel : ArticleComment
     {

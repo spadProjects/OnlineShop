@@ -28,6 +28,7 @@ namespace OnlineShop.Core.Models
         [Display(Name = "قیمت")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public long Price { get; set; }
+        public ICollection<InvoiceItem> InvoiceItems { get; set; }
         public string InsertUser { get; set; }
         public DateTime? InsertDate { get; set; }
         public string UpdateUser { get; set; }

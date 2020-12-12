@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using OnlineShop.Core.Models;
 
 namespace OnlineShop.Web.ViewModels
 {
@@ -27,5 +29,19 @@ namespace OnlineShop.Web.ViewModels
         public bool IsMain { get; set; }
         public int? Quantity { get; set; }
         public long? Price { get; set; }
+    }
+    public class ProductCommentWithPersianDateViewModel : ProductComment
+    {
+        public ProductCommentWithPersianDateViewModel()
+        {
+        }
+        public ProductCommentWithPersianDateViewModel(ProductComment comment)
+        {
+            this.Comment = comment;
+            this.PersianDate = comment.AddedDate != null ? new PersianDateTime(comment.AddedDate.Value).ToString() : "-";
+        }
+        public ProductComment Comment { get; set; }
+        [Display(Name = "تاریخ ثبت")]
+        public string PersianDate { get; set; }
     }
 }

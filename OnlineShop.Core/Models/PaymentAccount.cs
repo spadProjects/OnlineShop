@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.Core.Models
 {
-    public class InvoiceItem : IBaseEntity
+    public class PaymentAccount : IBaseEntity
     {
         public int Id { get; set; }
-        public int Quantity { get; set; }
-        public long Price { get; set; }
-        public long TotalPrice { get; set; }
-        public int ProductId { get; set; }
-        public Product Product { get; set; }
-        public int MainFeatureId { get; set; }
-        public int? InvoiceId { get; set; }
-        public Invoice Invoice { get; set; }
+        public string Number { get; set; }
+        public string PIN { get; set; }
+        public string ComebackUrl { get; set; }
+        public string PaymentUrl { get; set; }
+        public int MerchantId { get; set; }
+        public int TerminalId { get; set; }
+        public ICollection<EPayment> EPayments { get; set; }
         public string InsertUser { get; set; }
         public DateTime? InsertDate { get; set; }
         public string UpdateUser { get; set; }

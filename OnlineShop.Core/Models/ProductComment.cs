@@ -27,7 +27,7 @@ namespace OnlineShop.Core.Models
         [Display(Name = "تاریخ ثبت")]
         public DateTime? AddedDate { get; set; }
         [Display(Name = "امتیاز")]
-        public int Rate { get; set; }
+        public int? Rate { get; set; }
         public int? ParentId { get; set; }
         public virtual ArticleComment Parent { get; set; }
         public virtual ICollection<ArticleComment> Children { get; set; }

@@ -38,6 +38,8 @@ namespace OnlineShop.Core.Models
         public ICollection<ProductComment> ProductComments { get; set; }
         public ICollection<Discount> Discounts { get; set; }
         public ICollection<ProductFeatureValue> ProductFeatureValues { get; set; }
+        public ICollection<InvoiceItem> InvoiceItems { get; set; }
+
         public string InsertUser { get; set; }
         public DateTime? InsertDate { get; set; }
         public string UpdateUser { get; set; }

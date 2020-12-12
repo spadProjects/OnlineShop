@@ -39,5 +39,9 @@ namespace OnlineShop.Infrastructure
         public DbSet<ProductGroupFeature> ProductGroupFeatures { get; set; }
         public DbSet<ProductMainFeature> ProductMainFeatures { get; set; }
         public DbSet<SubFeature> SubFeatures { get; set; }
+        public DbSet<EPayment> EPayments { get; set; }
+        public DbSet<PaymentAccount> PaymentAccounts { get; set; }
+        public DbSet<EPaymentLog> EPaymentLogs { get; set; }
+
     }
 }

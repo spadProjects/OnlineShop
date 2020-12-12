@@ -201,8 +201,10 @@
     <Compile Include="Areas\Admin\Controllers\FaqController.cs" />
     <Compile Include="Areas\Admin\Controllers\FeaturesController.cs" />
     <Compile Include="Areas\Admin\Controllers\GridController.cs" />
+    <Compile Include="Areas\Admin\Controllers\InvoicesController.cs" />
     <Compile Include="Areas\Admin\Controllers\OffersController.cs" />
     <Compile Include="Areas\Admin\Controllers\PermissionsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductCommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductGalleriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
@@ -227,6 +229,7 @@
     <Compile Include="ViewModels\ArticleViewModels.cs" />
     <Compile Include="ViewModels\CommonViewModels.cs" />
     <Compile Include="ViewModels\IdentityModels.cs" />
+    <Compile Include="ViewModels\InvoiceViewModels.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="ViewModels\ProductGroupsViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModels.cs" />
@@ -1484,6 +1487,14 @@
     <Content Include="Areas\Admin\Views\ProductGalleries\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\ProductGalleries\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ProductGalleries\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductComments\AnswerComment.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductComments\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductComments\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductComments\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductComments\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Invoices\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Invoices\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Invoices\Delete.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
