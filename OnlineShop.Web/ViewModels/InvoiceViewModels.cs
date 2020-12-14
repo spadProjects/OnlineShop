@@ -21,7 +21,7 @@ namespace OnlineShop.Web.ViewModels
             if (invoice.CustomerName != null)
             {
                 this.Customer = invoice.CustomerName;
-            } 
+            }
             else
             {
                 if (invoice.CustomerId != null)
@@ -40,5 +40,17 @@ namespace OnlineShop.Web.ViewModels
         public string PersianDate { get; set; }
 
         public string Customer { get; set; }
+    }
+
+    public class ViewInvoiceViewModel
+    {
+        public Invoice Invoice { get; set; }
+        public string PersianDate { get; set; }
+        public List<InvoiceItemWithMainFeatureViewModel> InvoiceItems { get; set; }
+    }
+    public class InvoiceItemWithMainFeatureViewModel
+    {
+        public InvoiceItem InvoiceItem { get; set; }
+        public string MainFeature { get; set; }
     }
 }

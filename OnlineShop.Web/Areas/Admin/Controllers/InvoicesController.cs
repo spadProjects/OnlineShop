@@ -56,6 +56,26 @@ namespace OnlineShop.Web.Areas.Admin.Controllers
             }
             return View(invoice);
         }
+
+        public ActionResult ViewInvoice(int invoiceId)
+        {
+            var vm = new ViewInvoiceViewModel();
+            var invoice = _repo.GetInvoice(invoiceId);
+            vm.Invoice = invoice;
+            vm.PersianDate = new PersianDateTime(invoice.AddedDate).ToString();
+            vm.InvoiceItems = new List<InvoiceItemWithMainFeatureViewModel>();
+            // Getting Invoice Item SubFeatures
+            foreach (var invoiceItem in invoice.InvoiceItems)
+            {
+                var invoiceItemWithMainFeature = new InvoiceItemWithMainFeatureViewModel
+                {
+                    InvoiceItem = invoiceItem, MainFeature = _repo.GetInvoiceItemsMainFeature(invoiceItem.Id)
+                };
+                vm.InvoiceItems.Add(invoiceItemWithMainFeature);
+
+            }
+            return View(vm);
+        }
         public ActionResult Delete(int? id)
         {
             if (id == null)

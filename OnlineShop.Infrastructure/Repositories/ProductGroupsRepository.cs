@@ -18,6 +18,14 @@ namespace OnlineShop.Infrastructure.Repositories
             _logger = logger;
         }
 
+        public List<ProductGroup> GetProductGroupTable()
+        {
+            return _context.ProductGroups.Where(p => p.ParentId == null).Include(p=>p.Children).ToList();
+        }
+        public List<ProductGroup> GetProductGroupTable(int id)
+        {
+            return _context.ProductGroups.Where(p => p.ParentId == id).Include(p=>p.Children).ToList();
+        }
         public ProductGroup GetProductGroup(int id)
         {
             var pg = _context.ProductGroups.Include(p => p.ProductGroupBrands)

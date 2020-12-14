@@ -21,9 +21,20 @@ namespace OnlineShop.Web.Areas.Admin.Controllers
             _repo = repo;
         }
         // GET: Admin/ProductGroups
-        public ActionResult Index()
+        public ActionResult Index(int? parentId)
         {
-            return View(_repo.GetAll());
+            List<ProductGroup> productGroups;
+            if (parentId == null)
+                productGroups = _repo.GetProductGroupTable();
+            else
+            {
+                productGroups = _repo.GetProductGroupTable(parentId.Value);
+                var parent = _repo.Get(parentId.Value);
+                ViewBag.PrevParent = parent.ParentId;
+                ViewBag.ParentId = parentId;
+                ViewBag.ParentName = parent.Title;
+            }
+            return View(productGroups);
         }
         // GET: Admin/ProductGroups/Create
         public ActionResult Create()

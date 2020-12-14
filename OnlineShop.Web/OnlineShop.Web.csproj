@@ -1495,6 +1495,7 @@
     <Content Include="Areas\Admin\Views\Invoices\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Invoices\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Invoices\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Invoices\ViewInvoice.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
