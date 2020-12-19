@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OnlineShop.Core.Models.User>
+﻿@model List<OnlineShop.Web.ViewModels.UserWithRolesViewModel>
 @using Kendo.Mvc.UI
 @using OnlineShop.Infrastructure.Helpers;
 @{
@@ -37,17 +37,22 @@
 .HtmlAttributes(new { style = "height:450px" })
 .Columns(columns =>
 {
-columns.Bound(model => model.FirstName);
-columns.Bound(model => model.LastName);
-columns.Bound(model => model.UserName);
-columns.Bound(model => model.Email);
-columns.Bound(item => @item.Id).IncludeInMenu(false).Sortable(false).Title("دستورات").Filterable(false).Groupable(false).Template(
+columns.Bound(model => model.User.FirstName);
+columns.Bound(model => model.User.LastName);
+columns.Bound(model => model.User.UserName);
+    columns.Bound(item => @item.Roles).Title("نقش ها").Template(
         @<text>
-            <a class='btn btn-sm btn-clean btn-icon mr-2' href="/Admin/Users/Edit/@item.Id"><i class='far fa-edit text-primary'></i></a>
-            <a class='btn btn-sm btn-clean btn-icon' onclick="@(CheckPermission.Check("usersdelete") ? $"btnDelete('{item.Id}')" : "accessDenied()")"><i class='far fa-trash-alt text-danger'></i></a>
-            @Html.ActionLink("نقش ها", "UserRoles", "Users", new { userId = @item.Id }, new { @class = "btn btn-primary btn-sm ml-2" })
+            <span>@item.Roles</span>
+         </text>
+        );
+        columns.Bound(model => model.User.Email);
+        columns.Bound(item => @item.User.Id).IncludeInMenu(false).Sortable(false).Title("دستورات").Filterable(false).Groupable(false).Template(
+        @<text>
+            <a class='btn btn-sm btn-clean btn-icon mr-2' href="/Admin/Users/Edit/@item.User.Id"><i class='far fa-edit text-primary'></i></a>
+            <a class='btn btn-sm btn-clean btn-icon' onclick="@(CheckPermission.Check("usersdelete") ? $"btnDelete('{item.User.Id}')" : "accessDenied()")"><i class='far fa-trash-alt text-danger'></i></a>
+            @Html.ActionLink("نقش ها", "UserRoles", "Users", new { userId = @item.User.Id }, new { @class = "btn btn-primary btn-sm ml-2" })
         </text>
-        ).Width(255);
+        ).Width(190);
 })
     .Sortable()
     .Scrollable()
@@ -55,7 +60,7 @@ columns.Bound(item => @item.Id).IncludeInMenu(false).Sortable(false).Title("دس
         .DataSource(dataSource => dataSource
         .Server()
 
-        .Model(model => model.Id(item => item.Id))
+        .Model(model => model.Id(item => item.User.Id))
     )
     .Filterable(filterable => filterable
         .Messages(m => m

@@ -11,4 +11,10 @@ namespace OnlineShop.Core.Utility
         Percentage = 1,
         Amount = 2
     }
+    public enum GeoDivisionType
+    {
+        Country = 0,
+        State = 1,
+        City = 2,
+    }
 }

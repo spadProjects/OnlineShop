@@ -27,6 +27,7 @@
             @Html.HiddenFor(model => model.UserName)
             @Html.HiddenFor(model => model.SecurityStamp)
             @Html.HiddenFor(model => model.PasswordHash)
+            @Html.HiddenFor(model => model.IsDeleted)
             <div class="card-body">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="row">
@@ -88,6 +89,7 @@
                                 </div>
                             </div>
                         </div>
+                        <a href="javascript:void(0)" class="btn btn-success" onclick="btnResetPassword('@Model.Id')">بروزرسانی رمز عبور</a>
                     </div>
                 </div>
                 <div class="form-group">
@@ -105,10 +107,36 @@
         }
     </div>
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="myModalHeader">
+                <h5 class="modal-title" id="myModalLabel">Modal Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="myModalBody">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         new KTImageInput('user-avatar');
+    </script>
+    <script>
+        function btnResetPassword(id) {
+            $.get("/Admin/Users/ResetMyPassword/" + id, function (result) {
+                $("#myModal").modal();
+                $("#myModalLabel").html("بروزرسانی رمز عبور");
+                $("#myModalHeader");
+                $("#myModalBody").html(result);
+            });
+        }
     </script>
 }

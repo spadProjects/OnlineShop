@@ -17,8 +17,12 @@ namespace OnlineShop.Infrastructure.Helpers
             {
                 using (MyDbContext db = new MyDbContext())
                 {
-                    string userId =
-                       db.Users.FirstOrDefault(u => u.UserName.Trim().ToLower() == HttpContext.Current.User.Identity.Name.Trim().ToLower()).Id;
+                    var user = db.Users.FirstOrDefault(u =>
+                        u.UserName.Trim().ToLower() == HttpContext.Current.User.Identity.Name.Trim().ToLower() &&
+                        u.IsDeleted == false);
+                    if (user == null) return false;
+
+                    string userId = user.Id;
 
                     int? permissionId = db.Permissions.FirstOrDefault(p => p.Name.Trim().ToLower() == name)?.Id;
                     if (permissionId == null)
@@ -43,8 +47,11 @@ namespace OnlineShop.Infrastructure.Helpers
             {
                 using (MyDbContext db = new MyDbContext())
                 {
-                    userId =
-                       db.Users.FirstOrDefault(u => u.UserName.Trim().ToLower() == HttpContext.Current.User.Identity.Name.Trim().ToLower()).Id;
+                    var user = db.Users.FirstOrDefault(u =>
+                        u.UserName.Trim().ToLower() == HttpContext.Current.User.Identity.Name.Trim().ToLower() &&
+                        u.IsDeleted == false);
+                    if (user != null)
+                        userId = user.Id;
                 }
             }
             return userId;

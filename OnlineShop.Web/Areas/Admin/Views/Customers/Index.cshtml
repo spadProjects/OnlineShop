@@ -1,22 +1,22 @@
-﻿@model List<OnlineShop.Web.ViewModels.InvoiceTableViewModel>
+﻿@model List<OnlineShop.Core.Models.Customer>
 @using Kendo.Mvc.UI
 @using OnlineShop.Infrastructure.Helpers;
 @{
-    ViewBag.Title = "سفارشات";
+    ViewBag.Title = "لیست مشتریان";
 }
-<input type="hidden" id="nav_active" value="invoices">
-<input type="hidden" id="nav_item_active" value="invoices">
+<input type="hidden" id="nav_active" value="customers">
+<input type="hidden" id="nav_item_active" value="customers">
 <div class="card card-custom">
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
         <div class="card-title">
             <h3 class="card-label">
                 @ViewBag.Title
-                <span class="d-block text-muted pt-2 font-size-sm">ویرایش سفارشات</span>
+                <span class="d-block text-muted pt-2 font-size-sm">ویرایش @ViewBag.Title</span>
             </h3>
         </div>
-        <!--<div class="card-toolbar">-->
+        <div class="card-toolbar">
             <!--begin::Button-->
-            <!--<a href="/Admin/Invoices/Create" class="btn btn-primary font-weight-bolder">
+            <a href="/Admin/Customers/Create" class="btn btn-primary font-weight-bolder">
                 <span class="svg-icon svg-icon-md">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -24,11 +24,11 @@
                             <circle fill="#000000" cx="9" cy="15" r="6" />
                             <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
                         </g>
-                    </svg>
+                    </svg><!--end::Svg Icon-->
                 </span>	رکورد جدید
-            </a>-->
+            </a>
             <!--end::Button-->
-        <!--</div>-->
+        </div>
     </div>
     <div class="card-body">
         <!--begin: Datatable-->
@@ -37,29 +37,15 @@
 .HtmlAttributes(new { style = "height:450px" })
 .Columns(columns =>
 {
-columns.Bound(model => model.Invoice.InvoiceNumber).Title("شماره سفارش");
-columns.Bound(model => model.Customer).Title("مشتری");
-//columns.Bound(model => model.Invoice.TotalPrice).Title("قیمت").Template(@<text><span class="text text-success">@item.Invoice.TotalPrice تومان</span></text>);
-columns.Bound(item => @item.Invoice.AddedDate).IncludeInMenu(false).Title("تاریخ ثبت").Template(@<text>@item.PersianDate</text>);
-columns.Bound(item => @item.Invoice.AddedDate).IncludeInMenu(false).Title("وضعیت").Template(
-    @<text>
-        @if (item.Invoice.IsPayed)
-        {
-            <span class="label label-xs label-light-success label-inline">پرداخت شده</span>
-        }
-        else
-        {
-            <span class="label label-xs label-light-danger label-inline">پرداخت نشده</span>
-        }
-     </text>);
-
-        columns.Bound(item => @item.Invoice.Id).IncludeInMenu(false).Sortable(false).Title("دستورات").Filterable(false).Groupable(false).Template(
+columns.Bound(model => model.User.FirstName);
+columns.Bound(model => model.User.LastName);
+columns.Bound(model => model.User.PhoneNumber);
+        columns.Bound(item => @item.User.Id).IncludeInMenu(false).Sortable(false).Title("دستورات").Filterable(false).Groupable(false).Template(
         @<text>
-            <a class='btn btn-sm btn-clean btn-icon mr-2' href="/Admin/Invoices/Edit/@item.Invoice.Id"><i class='far fa-edit text-primary'></i></a>
-            <a class='btn btn-sm btn-clean btn-icon mr-2' href="/Admin/Invoices/ViewInvoice?invoiceId=@item.Invoice.Id"><i class='far fa-eye text-primary'></i></a>
-            <a class='btn btn-sm btn-clean btn-icon' onclick="@(CheckPermission.Check("invoicesdelete") ? $"btnDelete({item.Invoice.Id})" : "accessDenied()")"><i class='far fa-trash-alt text-danger'></i></a>
+            <a class='btn btn-sm btn-clean btn-icon mr-2' href="/Admin/Customers/Edit/@item.Id"><i class='far fa-edit text-primary'></i></a>
+            <a class='btn btn-sm btn-clean btn-icon' onclick="@(CheckPermission.Check("customersdelete") ? $"btnDelete('{item.Id}')" : "accessDenied()")"><i class='far fa-trash-alt text-danger'></i></a>
         </text>
-        ).Width(200);
+        ).Width(190);
 })
     .Sortable()
     .Scrollable()
@@ -67,7 +53,7 @@ columns.Bound(item => @item.Invoice.AddedDate).IncludeInMenu(false).Title("وض�
         .DataSource(dataSource => dataSource
         .Server()
 
-        .Model(model => model.Id(item => item.Invoice.Id))
+        .Model(model => model.Id(item => item.User.Id))
     )
     .Filterable(filterable => filterable
         .Messages(m => m
@@ -119,9 +105,9 @@ columns.Bound(item => @item.Invoice.AddedDate).IncludeInMenu(false).Title("وض�
     </script>
     <script>
         function btnDelete(id) {
-            $.get("/Admin/Invoices/Delete/" + id, function (result) {
+            $.get("/Admin/Customers/Delete/" + id, function (result) {
                 $("#myModal").modal();
-                $("#myModalLabel").html("حذف سفارش");
+                $("#myModalLabel").html("حذف مشتری");
                 $("#myModalHeader");
                 $("#myModalBody").html(result);
             });

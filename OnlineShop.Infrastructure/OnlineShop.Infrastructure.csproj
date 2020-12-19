@@ -140,6 +140,14 @@
     <Compile Include="Migrations\202012121301121_made-address-nullable.Designer.cs">
       <DependentUpon>202012121301121_made-address-nullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012140813036_Added-geo-division.cs" />
+    <Compile Include="Migrations\202012140813036_Added-geo-division.Designer.cs">
+      <DependentUpon>202012140813036_Added-geo-division.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012140845024_Added-isDeleted-to-user.cs" />
+    <Compile Include="Migrations\202012140845024_Added-isDeleted-to-user.Designer.cs">
+      <DependentUpon>202012140845024_Added-isDeleted-to-user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -150,9 +158,11 @@
     <Compile Include="Repositories\AuthRepsitory.cs" />
     <Compile Include="Repositories\BrandsRepository.cs" />
     <Compile Include="Repositories\ContactFormsRepository.cs" />
+    <Compile Include="Repositories\CustomersRepository.cs" />
     <Compile Include="Repositories\DiscountsRepository.cs" />
     <Compile Include="Repositories\FaqRepository.cs" />
     <Compile Include="Repositories\FeaturesRepository.cs" />
+    <Compile Include="Repositories\GeoDivisionsRepository.cs" />
     <Compile Include="Repositories\InvoicesRepository.cs" />
     <Compile Include="Repositories\LogsRepository.cs" />
     <Compile Include="Repositories\OffersRepository.cs" />
@@ -233,6 +243,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012121301121_made-address-nullable.resx">
       <DependentUpon>202012121301121_made-address-nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012140813036_Added-geo-division.resx">
+      <DependentUpon>202012140813036_Added-geo-division.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012140845024_Added-isDeleted-to-user.resx">
+      <DependentUpon>202012140845024_Added-isDeleted-to-user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

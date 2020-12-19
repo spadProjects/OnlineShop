@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using OnlineShop.Core.Models;
@@ -14,6 +15,7 @@ using OnlineShop.Infrastructure.Repositories;
 using OnlineShop.Web.ViewModels;
 using Kendo.Mvc.UI;
 using Microsoft.AspNet.Identity;
+using OnlineShop.Core.Utility;
 
 namespace OnlineShop.Web.Areas.Admin.Controllers
 {
@@ -29,8 +31,31 @@ namespace OnlineShop.Web.Areas.Admin.Controllers
         // GET: Users
         public ActionResult Index()
         {
+            var users = _repo.GetUsersTable();
+            var vm = new List<UserWithRolesViewModel>();
+            foreach (var user in users)
+            {
+                var userVm = new UserWithRolesViewModel(){User= user};
+                var roleStr = "";
+                var userRoles = _repo.GetUserRoles(user.Id);
 
-            return View(_repo.GetUsers());
+                // Only adding User if its not a customer or it has a role other than customer
+                if (userRoles.Count >= 2 || userRoles.Any(ur => ur.RoleId == StaticVariables.CustomerRoleId) == false)
+                {
+                    for (var i = 0; i < userRoles.Count; i++)
+                    {
+                        var role = _repo.GetRole(userRoles[i].RoleId);
+                        roleStr += $"{role.RoleNameLocal}";
+                        if (i < userRoles.Count - 1)
+                        {
+                            roleStr += ", ";
+                        }
+                    }
+                    userVm.Roles = roleStr;
+                    vm.Add(userVm);
+                }
+            }
+            return View(vm);
         }
 
         public ActionResult Create()
@@ -123,6 +148,7 @@ namespace OnlineShop.Web.Areas.Admin.Controllers
                     users.Avatar = newFileName;
                 }
                 #endregion
+
                 _repo.UpdateUser(users);
                 return RedirectToAction("Index");
             }
@@ -185,6 +211,38 @@ namespace OnlineShop.Web.Areas.Admin.Controllers
             return View(users);
 
         }
+
+        public ActionResult ResetMyPassword(string id)
+        {
+            ViewBag.Message = null;
+            ViewBag.UserId = id;
+            return PartialView();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetMyPassword(ResetMyPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var validatePassword = await _repo.ValidatePassword(model.OldPassword);
+                if (validatePassword.Succeeded)
+                {
+                    var result = await _repo.SetNewPassword(model.UserId,model.OldPassword,model.Password);
+                    if (result.Succeeded)
+                        return RedirectToAction("Index");
+                }
+
+                ViewBag.Message = "رمز عبور وارد شده صحیح نیست";
+                ViewBag.UserId = model.UserId;
+            }
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IdentityResult> ResetPasswordToDefault(string id)
+        {
+            var result = await _repo.ResetPasswordToDefault(id);
+            return result;
+        }
         public ActionResult Delete(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -206,73 +264,18 @@ namespace OnlineShop.Web.Areas.Admin.Controllers
         {
             var user = _repo.GetUser(id);
 
-            #region Delete User Avatar
-            if (user.Avatar != null)
-            {
-                if (System.IO.File.Exists(Server.MapPath("/Files/UserAvatars/" + user.Avatar)))
-                    System.IO.File.Delete(Server.MapPath("/Files/UserAvatars/" + user.Avatar));
+            //#region Delete User Avatar
+            //if (user.Avatar != null)
+            //{
+            //    if (System.IO.File.Exists(Server.MapPath("/Files/UserAvatars/" + user.Avatar)))
+            //        System.IO.File.Delete(Server.MapPath("/Files/UserAvatars/" + user.Avatar));
 
-            }
-            #endregion
+            //}
+            //#endregion
 
             _repo.DeleteUser(id);
             return RedirectToAction("Index");
         }
-
-        //public ActionResult EditMyProfile()
-        //{
-        //    var email = Session["UserEmail"];
-        //    var user = db.UsersRepository.Get().FirstOrDefault(u => u.Email.Trim().ToLower() == email.ToString().Trim().ToLower());
-        //    return View(user);
-        //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult EditMyProfile(Users users, string confirmPassword)
-        //{
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (users.Password == confirmPassword)
-        //        {
-        //            users.Password = PasswordHelper.base64Encode(users.Password);
-        //            db.UsersRepository.Update(users);
-        //            db.UsersRepository.Save();
-        //            return RedirectToAction("Index","Home");
-
-        //        }
-        //        else
-        //        {
-        //            ViewBag.Message = "عدم تطابق رمز عبور و تکرار رمز";
-        //        }
-
-        //    }
-
-        //    return View(users);
-
-        //}
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Users users = db.UsersRepository.getById(id);
-        //    if (users == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return PartialView(users);
-        //}
-
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Users users = db.UsersRepository.getById(id);
-        //    db.UsersRepository.Delete(users);
-        //    db.UsersRepository.Save();
-        //    return RedirectToAction("Index");
-        //}
         public ActionResult UserRoles(string userId)
         {
             #region Create User Roles

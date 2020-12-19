@@ -23,6 +23,8 @@ namespace OnlineShop.Core.Models
         [MaxLength(500,ErrorMessage = "نام وارد شده باید از 500 کارکتر کمتر باشد")]
         public string CustomerName { get; set; }
         public ICollection<InvoiceItem> InvoiceItems { get; set; }
+        public int? GeoDivisionId { get; set; }
+        public GeoDivision GeoDivision { get; set; }
         [MaxLength(500)]
         [DisplayName("آدرس")]
         public string Address { get; set; }

@@ -42,6 +42,7 @@ namespace OnlineShop.Infrastructure
         public DbSet<EPayment> EPayments { get; set; }
         public DbSet<PaymentAccount> PaymentAccounts { get; set; }
         public DbSet<EPaymentLog> EPaymentLogs { get; set; }
+        public DbSet<GeoDivision> GeoDivisions { get; set; }
 
     }
 }

@@ -5,6 +5,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using OnlineShop.Core.Models;
+using OnlineShop.Core.Utility;
 using OnlineShop.Infrastructure.Repositories;
 using OnlineShop.Web.ViewModels;
 
@@ -13,10 +14,12 @@ namespace OnlineShop.Web.Areas.Admin.Controllers
     public class InvoicesController : Controller
     {
         private readonly InvoicesRepository _repo;
+        private readonly GeoDivisionsRepository _GeoRepo;
 
-        public InvoicesController(InvoicesRepository repo)
+        public InvoicesController(InvoicesRepository repo, GeoDivisionsRepository geoRepo)
         {
             _repo = repo;
+            _GeoRepo = geoRepo;
         }
 
         // GET: Admin/Invoices
@@ -41,6 +44,7 @@ namespace OnlineShop.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.GeoDivisionId = new SelectList(_GeoRepo.GetGeoDivisionsByType((int)GeoDivisionType.State), "Id", "Title", invoice.GeoDivisionId);
             return View(invoice);
         }
 
@@ -54,6 +58,7 @@ namespace OnlineShop.Web.Areas.Admin.Controllers
                 _repo.Update(invoice);
                 return RedirectToAction("Index");
             }
+            ViewBag.GeoDivisionId = new SelectList(_GeoRepo.GetGeoDivisionsByType((int)GeoDivisionType.State), "Id", "Title", invoice.GeoDivisionId);
             return View(invoice);
         }
 

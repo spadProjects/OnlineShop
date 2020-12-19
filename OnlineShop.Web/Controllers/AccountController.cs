@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using OnlineShop.Web.ViewModels;
 using OnlineShop.Infrastructure.Helpers;
+using OnlineShop.Infrastructure.Repositories;
 
 namespace OnlineShop.Web.Controllers
 {
@@ -23,7 +24,7 @@ namespace OnlineShop.Web.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, UsersRepository userRepo)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -58,7 +59,6 @@ namespace OnlineShop.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-        var test ="this is a  merge test";
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -84,26 +84,29 @@ namespace OnlineShop.Web.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var user = UserManager.FindByEmail(model.Email);
-            if (user == null)
+            using (var _userRepo = new UsersRepository())
             {
-                ModelState.AddModelError("", "ایمیل یا رمز عبور شما صحیح نیست");
-                return View(model);
-            }
-
-            var result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToLocal("/Admin/Dashboard"); // Or use returnUrl
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
+                var user = _userRepo.FindByEmail(model.Email);
+                if (user == null)
+                {
                     ModelState.AddModelError("", "ایمیل یا رمز عبور شما صحیح نیست");
                     return View(model);
+                }
+
+                var result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
+                switch (result)
+                {
+                    case SignInStatus.Success:
+                        return RedirectToLocal("/Admin/Dashboard"); // Or use returnUrl
+                    case SignInStatus.LockedOut:
+                        return View("Lockout");
+                    case SignInStatus.RequiresVerification:
+                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    case SignInStatus.Failure:
+                    default:
+                        ModelState.AddModelError("", "ایمیل یا رمز عبور شما صحیح نیست");
+                        return View(model);
+                }
             }
         }
 

@@ -105,6 +105,7 @@
     <Compile Include="Models\ProductMainFeature.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\RolePermission.cs" />
+    <Compile Include="Models\GeoDivision.cs" />
     <Compile Include="Models\StaticContentDetail.cs" />
     <Compile Include="Models\StaticContentType.cs" />
     <Compile Include="Models\SubFeature.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\enums.cs" />
+    <Compile Include="Utility\StaticVariables.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

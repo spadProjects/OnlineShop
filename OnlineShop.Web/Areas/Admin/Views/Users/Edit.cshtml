@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "کاربران";
 }
-<input type="hidden" id="nav_active" value="article_control">
+<input type="hidden" id="nav_active" value="auth_control">
 <input type="hidden" id="nav_item_active" value="users">
 @{
     if (ViewBag.Message != null)
@@ -27,6 +27,7 @@
             @Html.HiddenFor(model => model.UserName)
             @Html.HiddenFor(model => model.SecurityStamp)
             @Html.HiddenFor(model => model.PasswordHash)
+            @Html.HiddenFor(model => model.IsDeleted)
             <div class="card-body">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="row">
@@ -64,12 +65,12 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Email, new { })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control "} })
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control " } })
                                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "form-text text-danger" })
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" style="margin-bottom: 10px">
                         <div class="form-group">
                             <label class="col-label">تصویر</label>
                             <div class="col-lg-6 col-md-12 col-sm-12">
@@ -88,6 +89,7 @@
                                 </div>
                             </div>
                         </div>
+                        <a href="javascript:void(0)" class="btn btn-success" onclick="btnResetToDefaultPassword('@Model.Id')">بازنشانی به رمز عبور پیشفرض</a>
                     </div>
                 </div>
                 <div class="form-group">
@@ -110,5 +112,15 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         new KTImageInput('user-avatar');
+    </script>
+    <script>
+        function btnResetToDefaultPassword(id) {
+            if (confirm('آیا اطمینان دارید؟')) {
+                $.post("/Admin/Users/ResetPasswordToDefault/" + id,
+                    function(result) {
+                        location.href = "/Admin/Users";
+                    });
+            }
+        }
     </script>
 }
