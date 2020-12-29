@@ -142,7 +142,7 @@ namespace OnlineShop.Web.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             var productGroup = _repo.Get(id);
-            var parentId = productGroup.parentId;
+            var parentId = productGroup.ParentId;
             //#region Delete ProductGroup Image
             //if (productGroup.Image != null)
             //{
