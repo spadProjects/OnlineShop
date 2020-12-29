@@ -20,11 +20,11 @@ namespace OnlineShop.Infrastructure.Repositories
 
         public List<ProductGroup> GetProductGroupTable()
         {
-            return _context.ProductGroups.Where(p => p.ParentId == null).Include(p=>p.Children).ToList();
+            return _context.ProductGroups.Where(p => p.ParentId == null && p.IsDeleted == false).Include(p=>p.Children).ToList();
         }
         public List<ProductGroup> GetProductGroupTable(int id)
         {
-            return _context.ProductGroups.Where(p => p.ParentId == id).Include(p=>p.Children).ToList();
+            return _context.ProductGroups.Where(p => p.ParentId == id && p.IsDeleted == false).Include(p=>p.Children).ToList();
         }
         public ProductGroup GetProductGroup(int id)
         {
